@@ -4,13 +4,10 @@
 
 | | |
 |---|---|
-| **Repository** | https://github.com/kushals256/healthnivaran |
-| **Domain** | Original clinic appointments SaaS (not TaskBoard) |
-| **Region (demo)** | `ap-south-1` (Mumbai) |
+| **Repository** | https://github.com/marvelxcodes/healthnivaran |
+| **Domain** | Original clinic appointments SaaS |
 | **Submission form** | https://forms.gle/XWAP1vAumDJgAPM1A |
 | **Deadline** | Sunday, 19 October 2026, 11:59 PM IST |
-
-This README is the technical documentation required for **M10**. Grading rubric: [`GRADING.md`](GRADING.md). Submission rules: [`SUBMISSION.md`](SUBMISSION.md).
 
 ---
 
@@ -155,7 +152,7 @@ Optional: prometheus :9091 scrapes backend; grafana :3300 visualizes metrics
 ### Start the full stack
 
 ```bash
-git clone https://github.com/kushals256/healthnivaran.git
+git clone https://github.com/marvelxcodes/healthnivaran.git
 cd healthnivaran
 docker compose up --build
 ```
@@ -289,8 +286,8 @@ push/PR → main
 ### Image tags
 
 ```text
-ghcr.io/kushals256/healthnivaran-backend:<git-sha>
-ghcr.io/kushals256/healthnivaran-frontend:<git-sha>
+ghcr.io/marvelxcodes/healthnivaran-backend:<git-sha>
+ghcr.io/marvelxcodes/healthnivaran-frontend:<git-sha>
 ```
 
 Packages should be **public** (or grader access granted). After the first push: GitHub → Packages → package settings → Change visibility → Public.
@@ -380,8 +377,8 @@ helm upgrade --install healthnivaran ./helm/healthnivaran \
   --namespace healthnivaran \
   --create-namespace \
   -f helm/healthnivaran/values-dev.yaml \
-  --set backend.image=ghcr.io/kushals256/healthnivaran-backend \
-  --set frontend.image=ghcr.io/kushals256/healthnivaran-frontend \
+  --set backend.image=ghcr.io/marvelxcodes/healthnivaran-backend \
+  --set frontend.image=ghcr.io/marvelxcodes/healthnivaran-frontend \
   --set backend.tag=<GIT_SHA> \
   --set frontend.tag=<GIT_SHA>
 ```
@@ -486,7 +483,7 @@ Video must cover (in order): PPT → codebase → CI/CD → Terraform/AWS → Ar
 - In-cluster PostgreSQL is for classroom/demo only; production should use managed Postgres (e.g. Amazon RDS).
 - Frontend Nginx proxies `/api` to hostname `backend` for Compose; on Kubernetes prefer Ingress `/api` routing to the backend Service.
 - HPA needs Metrics Server and real CPU load (`scripts/load-test.sh`).
-- Images publish to `ghcr.io/kushals256/healthnivaran-*`. Update Argo CD `repoURL` / image names if the fork owner differs.
+- Images publish to `ghcr.io/marvelxcodes/healthnivaran-*`. Update Argo CD `repoURL` / image names if the fork owner differs.
 - EKS + NAT incurs cost quickly — always run **`terraform destroy`** after evaluation.
 - M9 UI panels for submission were also validated on the local Compose monitoring stack after the AWS demo stack was destroyed.
 
